@@ -7,7 +7,7 @@ from handlers import (
 
 async def on_startup(_):
     db = sql_commands.Database()
-    db.sql_create_tables
+    db.sql_create_tables()
 
 start.register_start_handlers(dp=dp)
 
