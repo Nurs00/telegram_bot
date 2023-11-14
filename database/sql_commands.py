@@ -17,6 +17,6 @@ class Database:
     def sql_insert_users(self, telegram_id, username, first_name, last_name):
         self.cursor.execute(
             sql_queries.INSERT_USER_QUERY,
-            (None, telegram_id, username, first_name, last_name,)
+            (None, telegram_id, username, first_name, last_name)
         )
         self.connection.commit()

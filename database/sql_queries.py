@@ -11,5 +11,5 @@ UNIQUE (TELEGRAM_ID)
 """
 
 INSERT_USER_QUERY = """
-INSERT INTO telegram_users VALUES (?,?,?,?,?)
+INSERT OR IGNORE INTO telegram_users VALUES (?,?,?,?,?)
 """

@@ -3,6 +3,7 @@ from config import dp
 from database import sql_commands
 from handlers import (
     start,
+    chat_actions
 )
 
 async def on_startup(_):
@@ -10,6 +11,7 @@ async def on_startup(_):
     db.sql_create_tables()
 
 start.register_start_handlers(dp=dp)
+chat_actions.register_chat_actions_handlers(dp=dp)
 
 
 if __name__ == "__main__":
