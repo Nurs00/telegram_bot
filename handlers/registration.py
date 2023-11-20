@@ -12,8 +12,8 @@ from aiogram.dispatcher.filters.state import State, StatesGroup
 
 class RegistrationStates(StatesGroup):
     nickname = State()
-    biography = State()
-    geolocation = State()
+    bio = State()
+    geo = State()
     gender = State()
     age = State()
     photo = State()
@@ -115,8 +115,8 @@ async def load_photo(message: types.Message,
                     photo=photo,
                     caption=USER_FORM_TEXT.format(
                         nickname=data['nickname'],
-                        biography=data['biography'],
-                        geolocation=data['geolocation'],
+                        bio=data['bio'],
+                        geo=data['geo'],
                         gender=data['gender'],
                         age=data['age'],
                     )
@@ -127,8 +127,8 @@ async def load_photo(message: types.Message,
                     photo=photo,
                     caption=USER_FORM_TEXT.format(
                         nickname=data['nickname'],
-                        biography="Down below",
-                        geolocation=data['geolocation'],
+                        bio="Down below",
+                        geo=data['geo'],
                         gender=data['gender'],
                         age=data['age'],
                     )
@@ -140,8 +140,8 @@ async def load_photo(message: types.Message,
             db.sql_insert_user_form_register(
                 telegram_id=message.from_user.id,
                 nickname=data['nickname'],
-                biography=data['bio'],
-                geolocation=data['geo'],
+                bio=data['bio'],
+                geo=data['geo'],
                 gender=data['gender'],
                 age=data['age'],
                 photo=path.name
@@ -165,12 +165,12 @@ def register_registration_handlers(dp: Dispatcher):
     )
     dp.register_message_handler(
         load_bio,
-        state=RegistrationStates.biography,
+        state=RegistrationStates.bio,
         content_types=['text']
     )
     dp.register_message_handler(
         load_geo,
-        state=RegistrationStates.geolocation,
+        state=RegistrationStates.geo,
         content_types=['text']
     )
     dp.register_message_handler(
