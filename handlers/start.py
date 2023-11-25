@@ -23,7 +23,7 @@ async def start_button(message: types.Message):
         if user['tg_id'] == message.from_user.id:
             await bot.send_message(
                 chat_id=message.from_user.id,
-                text="Нельзя переходить по своей ссылке"
+                text="Нельзя переходить по своей ссылке!!!"
             )
             return
         else:
