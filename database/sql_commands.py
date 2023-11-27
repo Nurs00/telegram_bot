@@ -16,7 +16,6 @@ class Database:
         self.connection.execute(sql_queries.CREATE_USER_FORM_TABLE_QUERY)
         self.connection.execute(sql_queries.CREATE_LIKE_TABLE_QUERY)
         self.connection.execute(sql_queries.CREATE_REFERRAL_TABLE_QUERY)
-
         try:
             self.connection.execute(sql_queries.ALTER_USER_TABLE)
             self.connection.execute(sql_queries.ALTER_USER_V2_TABLE)
@@ -168,3 +167,7 @@ class Database:
             (None, owner, referral,)
         )
         self.connection.commit()
+
+    def sql_select_reference_command(self):
+        self.cursor.execute(sql_queries.SELECT_REFERENCE_QUERY)
+        return self.cursor.fetchall()

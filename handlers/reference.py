@@ -51,9 +51,33 @@ async def reference_link_call(call: types.CallbackQuery):
             text=f"Here is your database link: {user['link']}"
         )
 
+async def reference_list_call(call: types.CallbackQuery):
+    db = Database()
+    user = db.sql_select_reference_command()
+
+    if user:
+        user_list = [list(i) for i in user]
+        username = []
+        for index, item in enumerate(user_list):
+            username.append(item[2])
+        link = []
+        for index, item in enumerate(user_list):
+            link.append(item[5])
+
+        await bot.send_message(chat_id=call.from_user.id,
+                               text=f'Список у кого есть рефераты:\n'
+                                    f'{username}\n'
+                                    f'{link}', )
+    else:
+        await bot.send_message(chat_id=call.from_user.id,
+                               text='рефератов пока нет')
+
+
 
 def register_reference_handlers(dp: Dispatcher):
     dp.register_callback_query_handler(reference_menu_call,
                                        lambda call: call.data == "reference_menu")
     dp.register_callback_query_handler(reference_link_call,
                                        lambda call: call.data == "reference_link")
+    dp.register_callback_query_handler(reference_list_call,
+                                       lambda call: call.data == "reference_list")

@@ -20,7 +20,7 @@ async def start_keyboard():
         callback_data="random_profiles"
     )
     reference_menu_button = InlineKeyboardButton(
-        "Reference Menu 🪲",
+        "Reference Menu",
         callback_data="reference_menu"
     )
     markup.add(questionnaire_button)
@@ -82,5 +82,10 @@ async def reference_menu_keyboard():
         "Reference Link",
         callback_data="reference_link"
     )
+    reference_list_button = InlineKeyboardButton(
+        "Reference List",
+        callback_data="reference_list"
+    )
     markup.add(reference_button)
+    markup.add(reference_list_button)
     return markup
