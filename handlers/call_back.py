@@ -4,6 +4,7 @@ from aiogram import types, Dispatcher
 from config import bot
 from database.sql_commands import Database
 from keyboards.inline_buttons import questionnaire_keyboard
+from scraping.news_scraper import Supernatural
 
 
 async def start_questionnaire_call(call: types.CallbackQuery):
@@ -28,6 +29,17 @@ async def mojo_call(call: types.CallbackQuery):
     )
 
 
+async def season_call(call: types.CallbackQuery):
+    scraper = Supernatural()
+    links = scraper.parse_data()
+    for link in links:
+        await bot.send_message(
+            chat_id=call.from_user.id,
+            text=scraper.PLUS_URL + link,
+        )
+
+
+
 
 def register_callback_handlers(dp: Dispatcher):
     dp.register_callback_query_handler(start_questionnaire_call,
@@ -36,3 +48,5 @@ def register_callback_handlers(dp: Dispatcher):
                                        lambda call: call.data == "python")
     dp.register_callback_query_handler(mojo_call,
                                        lambda call: call.data == "mojo")
+    dp.register_callback_query_handler(season_call,
+                                       lambda call: call.data == "Supernatural_season")

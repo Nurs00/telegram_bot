@@ -23,11 +23,16 @@ async def start_keyboard():
         "Reference Menu",
         callback_data="reference_menu"
     )
+    supernatural_button = InlineKeyboardButton(
+        "5 Season",
+        callback_data="Supernatural_season"
+    )
     markup.add(questionnaire_button)
     markup.add(registration_button)
     markup.add(my_profile_button)
     markup.add(random_profiles_button)
     markup.add(reference_menu_button)
+    markup.add(supernatural_button)
     return markup
 
 
