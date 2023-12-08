@@ -23,16 +23,21 @@ async def start_keyboard():
         "Reference Menu",
         callback_data="reference_menu"
     )
-    supernatural_button = InlineKeyboardButton(
-        "5 Season",
-        callback_data="Supernatural_season"
-    )
+    # supernatural_button = InlineKeyboardButton(
+    #     "5 Season",
+    #     callback_data="Supernatural_season"
+    # )
+    # O_service_button = InlineKeyboardButton(
+    #     "O service",
+    #     callback_data="service"
+    # )
     markup.add(questionnaire_button)
     markup.add(registration_button)
     markup.add(my_profile_button)
     markup.add(random_profiles_button)
     markup.add(reference_menu_button)
-    markup.add(supernatural_button)
+    # markup.add(supernatural_button)
+    # markup.add(O_service_button)
     return markup
 
 
@@ -94,3 +99,13 @@ async def reference_menu_keyboard():
     markup.add(reference_button)
     markup.add(reference_list_button)
     return markup
+
+    # # noinspection PyUnreachableCode
+    # async def save_button():
+    #     markup = InlineKeyboardMarkup()
+    #     save_service = InlineKeyboardButton(
+    #         'save',
+    #         call_back_data='save_service'
+    #     )
+    #     markup.add(save_service)
+    #     return markup
